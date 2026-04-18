@@ -478,6 +478,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: visible;
 }
 
 .contact-content {
@@ -499,10 +500,21 @@ a {
 
 .contact-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
-  justify-content: center;
+  overflow: visible;
+  padding-bottom: 0.2rem;
+}
+
+.contact-links::-webkit-scrollbar {
+  height: 6px;
+}
+
+.contact-links::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
 }
 
 .contact-btn {
@@ -513,6 +525,7 @@ a {
   border: 2px solid var(--accent);
   border-radius: 999px;
   padding: 1.2rem 2rem;
+  min-width: 160px;
   font-weight: 700;
   font-size: 1.05rem;
   color: var(--white);
@@ -520,11 +533,13 @@ a {
   transition: all 240ms ease;
   box-shadow: 0 8px 20px rgba(var(--base-rgb), 0.3);
   text-decoration: none;
+  position: relative;
+  z-index: 1;
 }
 
 .contact-btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(var(--base-rgb), 0.4);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(var(--base-rgb), 0.35);
   border-color: var(--accent-strong);
 }
 
@@ -579,7 +594,7 @@ a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .contact-links {
+  .contact-row {
     gap: 0.8rem;
   }
 
@@ -639,14 +654,26 @@ a {
   }
 
   .contact-links {
-    flex-direction: column;
-    gap: 0.9rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: visible;
+    min-width: 0;
   }
 
   .contact-btn {
     width: 100%;
+    max-width: 360px;
+    min-width: 0;
     padding: 1.1rem 1.4rem;
     font-size: 1rem;
+  }
+
+  .contact-btn:hover {
+    transform: translateY(-1px);
+  }
+
+  .contact-btn:hover {
+    transform: scale(1.02);
   }
 
   .contact-description {
