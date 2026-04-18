@@ -564,15 +564,30 @@ a {
   border-top: 1px solid var(--neutral-200);
   padding-top: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 0.6rem;
+  text-align: center;
 }
 
-.footer p {
-  margin: 0;
-  color: var(--neutral-500);
-  font-size: 0.9rem;
+.footer-content p {
+    margin: 0;
+    color: var(--neutral-500);
+    font-size: 0.9rem;
+  }
+
+  .footer-credit {
+    color: #ffffff !important;
+  }
+
+  .footer-credit a {
+    color: inherit !important;
+}
+
+.footer-credit a {
+  color: inherit;
 }
 
 @media (max-width: 1040px) {
