@@ -26,6 +26,16 @@
         <a href="#contato">Contato</a>
       </nav>
       <a href="https://wa.me/5516988778656?text=Quero%20contratar%20MK-AUTH" class="btn btn-primary nav-cta">Falar no WhatsApp</a>
+      <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+        <a href="index.html" class="mobile-menu-link">HOME</a>
+        <a href="mk-auth.html" class="mobile-menu-link">MK-AUTH Cloud</a>
+        <a href="#produtos" class="mobile-menu-link">Produtos</a>
+        <a href="#contato" class="mobile-menu-link">Contato</a>
+        <a href="https://wa.me/5516988778656?text=Quero%20contratar%20MK-AUTH" class="btn btn-primary mobile-menu-btn">Falar no WhatsApp</a>
+      </nav>
     </div>
   </header>
 
@@ -74,7 +84,7 @@
           <article class="service-card">
             <h3>Nível 1 — Até 150 clientes</h3>
             <p>1vCPU • 1GB RAM • 20HD SSD • 1GB UPLINK • Licença grátis</p>
-            <p class="product-note">Ideal para teste inicial</p>
+            <p class="product-note">Ideal para seu Inicio</p>
             <p class="product-price">R$79,90</p>
             <div class="price-row">
               <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%201%20R%2479%2C90" class="btn btn-primary">Contratar</a>
@@ -179,6 +189,37 @@
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
     }
+
+    // Menu hamburger toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    menuToggle?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileMenu?.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
+    // Fechar menu ao clicar em um link
+    document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.remove('active');
+        menuToggle?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      });
+    });
+
+    // Fechar menu ao clicar fora
+    document.addEventListener('click', (e) => {
+      if (mobileMenu?.classList.contains('active') && 
+          !mobileMenu?.contains(e.target) && 
+          !menuToggle?.contains(e.target)) {
+        mobileMenu?.classList.remove('active');
+        menuToggle?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+    });
   </script>
 </body>
 
