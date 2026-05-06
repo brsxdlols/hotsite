@@ -1459,3 +1459,24 @@ a {
 .mkauth-dashboard-container {
   cursor: zoom-in;
 }
+
+.hero-note {
+  white-space: nowrap; /* Mantém o texto em uma linha só */
+  transition: background 0.3s ease;
+}
+
+.hero-note:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* No Mobile, se o botão ficar muito largo */
+@media (max-width: 480px) {
+  .hero-note {
+    font-size: 0.75rem; /* Diminui um pouco a letra se necessário */
+    padding: 0.7rem 1rem !important;
+  }
+  .hero-note img {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
