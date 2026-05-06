@@ -473,25 +473,17 @@ function initCarousel(selector, direction = 'left') {
 
     if (!prefersReducedMotion.matches && !isDragging) {
       const speed = (elapsed * 41) / 1000;
-      
-      // Movimentação direta do scroll
+      // Se direction for 'left', soma (vai p/ esquerda). Se 'right', subtrai (vai p/ direita)
       viewport.scrollLeft += (direction === 'left' ? speed : -speed);
-      
       normalizeLoop();
     }
     requestAnimationFrame(animate);
   };
 
-  // AJUSTE PARA IPHONE: 
-  // Forçamos um posicionamento inicial em ambos para o Safari "acordar" o renderizador
-  setTimeout(() => { 
-    if (direction === 'right') {
-      viewport.scrollLeft = getLoopWidth(); 
-    } else {
-      // Começa 1px deslocado para garantir que o loop de animação inicie no iOS
-      viewport.scrollLeft = 1; 
-    }
-  }, 100);
+  // Se for sentido direita, começa no meio do scroll para não travar no início
+  if (direction === 'right') {
+    setTimeout(() => { viewport.scrollLeft = getLoopWidth(); }, 50);
+  }
 
   requestAnimationFrame(animate);
 }
