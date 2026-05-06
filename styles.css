@@ -1348,3 +1348,19 @@ a {
     margin: 0 auto;  /* Centraliza o quadro vertical */
   }
 }
+/* Estilo para a logo dentro dos cards de planos */
+.mk-icon-card {
+  width: 45px;          /* Tamanho similar ao ícone da nuvem */
+  height: 45px;
+  object-fit: contain;  /* Garante que a logo não distorça */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); /* Dá um leve destaque */
+  opacity: 0.9;         /* Deixa levemente suave como era a nuvem */
+}
+
+/* Garante que a linha do preço e o botão continuem alinhados */
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
