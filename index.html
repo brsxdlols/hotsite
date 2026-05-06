@@ -28,7 +28,7 @@
         <a href="#especialidades">Especialidades</a>
         <a href="#tecnologias">Tecnologias</a>
         <a href="#experiencia">Experiência</a>
-        <a href="#contato">Contato</a>
+        <a href="clientes.html">Clientes</a>
       </nav>
       <a href="#contato" class="btn btn-primary nav-cta">Solicitar contato</a>
       <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
@@ -36,11 +36,11 @@
       </button>
       <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
         <a href="#inicio" class="mobile-menu-link">Home</a>
-        <a href="mk-auth.html" class="mobile-menu-link">MK-AUTH Cloud</a>
+        <a href="mk-auth.html" class="mobile-menu-link">MK-Auth Cloud</a>
         <a href="#especialidades" class="mobile-menu-link">Especialidades</a>
         <a href="#tecnologias" class="mobile-menu-link">Tecnologias</a>
         <a href="#experiencia" class="mobile-menu-link">Experiência</a>
-        <a href="#contato" class="mobile-menu-link">Contato</a>
+        <a href="clientes.html" class="mobile-menu-link">Clientes</a>
         <a href="#contato" class="btn btn-primary mobile-menu-btn">Solicitar contato</a>
       </nav>
     </div>
@@ -58,7 +58,7 @@
           </p>
           <div class="hero-actions">
             <a href="#contato" class="btn btn-primary">Entrar em contato</a>
-            <a href="mk-auth.html" class="btn btn-primary">Contratar MK-AUTH Cloud</a>
+            <a href="mk-auth.html" class="btn btn-primary">Contratar MK-Auth Cloud</a>
           </div>
           <ul class="kpi-grid" aria-label="Indicadores profissionais">
             <li><strong>+9 anos</strong><span>em redes de ISP</span></li>
@@ -211,23 +211,23 @@
             </div>
           </article>
           <article class="timeline-item">
-            <span class="timeline-year">2011</span>
+            <span class="timeline-year">2013</span>
             <div>
-              <h3>Provedor (Visual Net)</h3>
+              <h3>Provedor - "Visual Net"</h3>
               <p>Participação na formação do provedor e atuação prática em rede via rádio, expansão e balanceamento.</p>
             </div>
           </article>
           <article class="timeline-item">
             <span class="timeline-year">2016</span>
             <div>
-              <h3>Gerente de Redes (Telesert)</h3>
+              <h3>Gerente de Redes "Telesert"</h3>
               <p>Liderança técnica em ambientes ISP com foco em padronização, desempenho e crescimento estruturado.</p>
             </div>
           </article>
           <article class="timeline-item">
-            <span class="timeline-year">2021+</span>
+            <span class="timeline-year">2021</span>
             <div>
-              <h3>Gerência em Provedor Regional (Sistel Fibra)</h3>
+              <h3>Gerência em Provedor "Sistel Fibra"</h3>
               <p>Gestão de infraestrutura crítica para múltiplas cidades, unindo rede, servidores em larga escala.</p>
             </div>
           </article>
@@ -243,9 +243,9 @@
         </div>
         <div class="cert-grid">
           <article class="cert-card">
-            <h3>MikroTik</h3>
+            <h3>Mikrotik</h3>
             <ul>
-              <li>MTCNA – MikroTik Certified Network Associate</li>
+              <li>MTCNA – Mikrotik Certified Network Associate</li>
               <li>MTCRE – Routing Engineer</li>
               <li>Experiência prática em ambientes ISP (PPPoE, CGNAT, BGP)</li>
             </ul>
@@ -284,6 +284,32 @@
           <li>Atuação orientada a estabilidade, segurança e escalabilidade sustentável.</li>
         </ul>
       </div>
+    </section>
+
+    <section class="section client-showcase" aria-labelledby="clientes-title">
+      <div class="container section-shell client-showcase-shell">
+        <div class="section-head client-showcase-head">
+          <p class="eyebrow">Clientes</p>
+          <h2 id="clientes-title">Operações e provedores que já confiaram neste trabalho</h2>
+          <p class="client-showcase-copy">
+            Uma vitrine contínua de marcas atendidas, com rolagem suave inspirada em galerias de expositores.
+          </p>
+        </div>
+
+<!-- Carrossel 1 (Sentido Esquerda) -->
+<div class="logo-carousel" data-carousel="left">
+  <div class="logo-carousel-viewport" data-carousel-viewport>
+    <div class="logo-carousel-track" data-carousel-track></div>
+  </div>
+</div>
+
+<!-- Carrossel 2 (Sentido Direita) -->
+<div class="logo-carousel" data-carousel="right" style="margin-top: 20px;">
+  <div class="logo-carousel-viewport" data-carousel-viewport>
+    <div class="logo-carousel-track" data-carousel-track></div>
+  </div>
+</div>
+
     </section>
 
     <section id="contato" class="section contact">
@@ -329,6 +355,7 @@
       </p>
     </div>
   </footer>
+  <script src="assets/js/client-logos.js"></script>
   <script>
     const yearEl = document.getElementById('current-year');
     if (yearEl) {
@@ -365,6 +392,104 @@
         document.body.classList.remove('menu-open');
       }
     });
+
+const clientLogos = Array.isArray(window.CLIENT_LOGOS) ? window.CLIENT_LOGOS : [];
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+function initCarousel(selector, direction = 'left') {
+  const carousel = document.querySelector(selector);
+  if (!carousel) return;
+
+  const viewport = carousel.querySelector('[data-carousel-viewport]');
+  const track = carousel.querySelector('[data-carousel-track]');
+  
+  // Para o carrossel da direita, invertemos a ordem das logos 
+  // para que as logos iniciais sejam diferentes da primeira fileira
+  const logosToDisplay = direction === 'right' ? [...clientLogos].reverse() : clientLogos;
+
+  track.innerHTML = logosToDisplay.map((logo) => `
+    <article class="logo-slide">
+      <img src="${window.getClientLogoPath(logo.file)}" alt="Logo ${logo.name}" loading="lazy">
+    </article>
+  `).join('');
+
+  // Clona os slides para o loop infinito
+  const originalSlides = Array.from(track.children);
+  originalSlides.forEach((slide) => {
+    const clone = slide.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    track.appendChild(clone);
+  });
+
+  let isDragging = false;
+  let startX = 0;
+  let startScrollLeft = 0;
+  let lastFrame = 0;
+
+  const getLoopWidth = () => track.scrollWidth / 2;
+
+  const normalizeLoop = () => {
+    const loopWidth = getLoopWidth();
+    if (!loopWidth) return;
+
+    if (viewport.scrollLeft >= loopWidth) {
+      viewport.scrollLeft -= loopWidth;
+    } else if (viewport.scrollLeft <= 0) {
+      viewport.scrollLeft += loopWidth;
+    }
+  };
+
+  // Drag and Drop (Mouse/Touch)
+  viewport.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    startX = e.clientX;
+    startScrollLeft = viewport.scrollLeft;
+    viewport.classList.add('is-dragging');
+    viewport.setPointerCapture(e.pointerId);
+  });
+
+  viewport.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const deltaX = e.clientX - startX;
+    viewport.scrollLeft = startScrollLeft - deltaX;
+    normalizeLoop();
+  });
+
+  const stopDragging = (e) => {
+    isDragging = false;
+    viewport.classList.remove('is-dragging');
+    if (e.pointerId) viewport.releasePointerCapture(e.pointerId);
+  };
+
+  viewport.addEventListener('pointerup', stopDragging);
+  viewport.addEventListener('pointercancel', stopDragging);
+
+  const animate = (timestamp) => {
+    if (!lastFrame) lastFrame = timestamp;
+    const elapsed = timestamp - lastFrame;
+    lastFrame = timestamp;
+
+    if (!prefersReducedMotion.matches && !isDragging) {
+      const speed = (elapsed * 41) / 1000;
+      // Se direction for 'left', soma (vai p/ esquerda). Se 'right', subtrai (vai p/ direita)
+      viewport.scrollLeft += (direction === 'left' ? speed : -speed);
+      normalizeLoop();
+    }
+    requestAnimationFrame(animate);
+  };
+
+  // Se for sentido direita, começa no meio do scroll para não travar no início
+  if (direction === 'right') {
+    setTimeout(() => { viewport.scrollLeft = getLoopWidth(); }, 50);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// Inicializa os dois carrosséis
+initCarousel('[data-carousel="left"]', 'left');
+initCarousel('[data-carousel="right"]', 'right');
+
   </script>
 </body>
 
