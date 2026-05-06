@@ -1480,3 +1480,23 @@ a {
     height: 20px !important;
   }
 }
+
+/* Ajuste para janelas redimensionadas e Tablets */
+@media (max-width: 1080px) {
+  /* Esconde os links que ficam embolados */
+  .nav-links, 
+  .nav-cta {
+    display: none !important;
+  }
+
+  /* Força o botão de menu (hambúrguer) a aparecer */
+  .menu-toggle {
+    display: block !important;
+    order: 3; /* Garante que ele fique na direita */
+  }
+
+  /* Mantém a marca no lugar */
+  .brand {
+    order: 1;
+  }
+}
