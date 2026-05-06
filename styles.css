@@ -781,13 +781,11 @@ a {
 .logo-carousel-viewport {
   overflow: hidden;
   width: 100%;
-  /* Estas linhas abaixo resolvem o travamento: */
-  scroll-behavior: auto !important; 
-  -webkit-overflow-scrolling: touch;
-  will-change: scroll-left;
-  backface-visibility: hidden;
-  transform: translateZ(0);
+  /* REMOVA: will-change, transform: translateZ, backface-visibility */
+  /* Deixe apenas o essencial: */
+  -webkit-overflow-scrolling: touch; 
 }
+
 
 .logo-carousel-viewport::-webkit-scrollbar {
   display: none;
