@@ -20,7 +20,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-MCONNECT.jpg', name: 'MCONNECT' },
   { file: 'Logo-GDFIBRA.jpg', name: 'GDFIBRA' },
   { file: 'Logo-Flynet.jpg', name: 'Flynet' },
-  { file: 'Logo-Flynet-dvl.jpg', name: 'Flynet DVL' },
+  { file: 'Logo-Flynet-DVL.jpg', name: 'Flynet DVL' },
   { file: 'Logo-Waconnect.jpg', name: 'Waconnect' },
   { file: 'Logo-Zimnet.jpg', name: 'Zimnet' },
   { file: 'Logo-Global.jpg', name: 'Global' },
