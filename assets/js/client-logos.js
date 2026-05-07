@@ -44,7 +44,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-Maxxi.jpg', name: 'Maxxi' },
   { file: 'Logo-Netfibratelecom.jpg', name: 'Netfibra Telecom' },
   { file: 'Logo-Brunonet.png', name: 'Bruno Net' },
-  { file: 'Logo-FBNET.png', name: 'FB Net' },
+  { file: 'Logo-FB.png', name: 'FB Net' },
   { file: 'Logo-Multifibra.png', name: 'Multifibra' },
   { file: 'Logo-Lazerfiber.jpg', name: 'Lazerfiber' },
   { file: 'Logo-Visual.png', name: 'Visualnet' },
