@@ -505,12 +505,14 @@ function initCarousel(selector, direction = 'left') {
     animationId = requestAnimationFrame(animate);
   };
 
-  // Se for sentido direita, começa no meio do scroll para não travar no início
-  if (direction === 'right') {
-    setTimeout(() => { viewport.scrollLeft = getLoopWidth(); }, 100);
-  }
-
-  animationId = requestAnimationFrame(animate);
+  // Delay inicial para estabilizar o DOM (importante para iOS)
+  setTimeout(() => {
+    // Se for sentido direita, começa no meio do scroll para não travar no início
+    if (direction === 'right') {
+      viewport.scrollLeft = getLoopWidth();
+    }
+    animationId = requestAnimationFrame(animate);
+  }, 100);
 
   // Cleanup function (útil se precisar parar o carrossel)
   carousel.__stopCarousel = () => {
