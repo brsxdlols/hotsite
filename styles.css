@@ -782,6 +782,9 @@ a {
   overflow: hidden; /* Importante: esconde o que sobra */
   width: 100%;
   position: relative;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+  -webkit-transform: translateZ(0); /* GPU acceleration no iOS */
+  transform: translateZ(0);
 }
 
 .logo-carousel-viewport::-webkit-scrollbar {
@@ -791,17 +794,24 @@ a {
 .logo-carousel-viewport.is-dragging {
   cursor: grabbing;
   scroll-behavior: auto;
+  -webkit-overflow-scrolling: auto; /* Desabilita durante dragging no iOS */
 }
 
 .logo-carousel-track {
   display: flex;
   width: max-content; /* Garante que o track tenha a largura de todas as logos */
-  will-change: transform; /* Avisa o iPhone para usar a GPU */
+  will-change: scroll-position;
+  -webkit-transform: translateZ(0); /* Aceleração de hardware no iOS */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 
 .logo-slide {
   flex-shrink: 0;
-  transform: translateZ(0); /* Aceleração de hardware no iOS */
+  -webkit-transform: translateZ(0); /* Aceleração de hardware no iOS */
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .logo-slide img {

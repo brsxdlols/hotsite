@@ -427,6 +427,7 @@ function initCarousel(selector, direction = 'left') {
   let startX = 0;
   let startScrollLeft = 0;
   let lastFrame = 0;
+  let animationId = null;
 
   const getLoopWidth = () => track.scrollWidth / 2;
 
@@ -441,51 +442,82 @@ function initCarousel(selector, direction = 'left') {
     }
   };
 
-  // Drag and Drop (Mouse/Touch)
-  viewport.addEventListener('pointerdown', (e) => {
+  // Unified pointer/touch event handler
+  const handleDragStart = (e) => {
     isDragging = true;
-    startX = e.clientX;
+    startX = e.clientX || (e.touches && e.touches[0].clientX);
     startScrollLeft = viewport.scrollLeft;
     viewport.classList.add('is-dragging');
-    viewport.setPointerCapture(e.pointerId);
-  });
-
-  viewport.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
-    const deltaX = e.clientX - startX;
-    viewport.scrollLeft = startScrollLeft - deltaX;
-    normalizeLoop();
-  });
-
-  const stopDragging = (e) => {
-    isDragging = false;
-    viewport.classList.remove('is-dragging');
-    if (e.pointerId) viewport.releasePointerCapture(e.pointerId);
+    if (e.pointerId !== undefined) {
+      viewport.setPointerCapture(e.pointerId);
+    }
   };
 
-  viewport.addEventListener('pointerup', stopDragging);
-  viewport.addEventListener('pointercancel', stopDragging);
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault(); // Previne scroll padrão no iOS
+    const currentX = e.clientX || (e.touches && e.touches[0].clientX);
+    const deltaX = currentX - startX;
+    viewport.scrollLeft = startScrollLeft - deltaX;
+    normalizeLoop();
+  };
+
+  const handleDragEnd = (e) => {
+    isDragging = false;
+    viewport.classList.remove('is-dragging');
+    if (e.pointerId !== undefined) {
+      viewport.releasePointerCapture(e.pointerId);
+    }
+  };
+
+  // Pointer events (primário)
+  viewport.addEventListener('pointerdown', handleDragStart);
+  viewport.addEventListener('pointermove', handleDragMove);
+  viewport.addEventListener('pointerup', handleDragEnd);
+  viewport.addEventListener('pointercancel', handleDragEnd);
+
+  // Touch events (fallback para Safari iOS)
+  viewport.addEventListener('touchstart', handleDragStart, false);
+  viewport.addEventListener('touchmove', handleDragMove, { passive: false });
+  viewport.addEventListener('touchend', handleDragEnd, false);
+  viewport.addEventListener('touchcancel', handleDragEnd, false);
 
   const animate = (timestamp) => {
     if (!lastFrame) lastFrame = timestamp;
     const elapsed = timestamp - lastFrame;
+    
+    // Throttle: atualizar apenas a cada 16ms (~60fps) no iOS
+    const targetFrameTime = 16;
+    if (elapsed < targetFrameTime) {
+      animationId = requestAnimationFrame(animate);
+      return;
+    }
+
     lastFrame = timestamp;
 
     if (!prefersReducedMotion.matches && !isDragging) {
-      const speed = (elapsed * 41) / 1000;
+      // Velocidade mais suave para evitar travamentos no iOS
+      const speed = (elapsed * 35) / 1000; // Reduzido de 41 para 35
       // Se direction for 'left', soma (vai p/ esquerda). Se 'right', subtrai (vai p/ direita)
       viewport.scrollLeft += (direction === 'left' ? speed : -speed);
       normalizeLoop();
     }
-    requestAnimationFrame(animate);
+    animationId = requestAnimationFrame(animate);
   };
 
   // Se for sentido direita, começa no meio do scroll para não travar no início
   if (direction === 'right') {
-    setTimeout(() => { viewport.scrollLeft = getLoopWidth(); }, 50);
+    setTimeout(() => { viewport.scrollLeft = getLoopWidth(); }, 100);
   }
 
-  requestAnimationFrame(animate);
+  animationId = requestAnimationFrame(animate);
+
+  // Cleanup function (útil se precisar parar o carrossel)
+  carousel.__stopCarousel = () => {
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+    }
+  };
 }
 
 // Inicializa os dois carrosséis
