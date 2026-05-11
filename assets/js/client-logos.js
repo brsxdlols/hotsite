@@ -87,6 +87,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-GNET-FIBRA.jpg', name: 'GNET PROVIDER' },
   { file: 'Logo-Jamnet.jpg', name: 'Jamnet' },
   { file: 'Logo-Lanet.png', name: 'Lanet' },
+  { file: 'Logo-Lanettelecom.jpg', name: 'Lanet Telecom' },
   { file: 'Logo-Supernet.png', name: 'Supernet' },
   { file: 'Logo-Niksul.jpg', name: 'Niksul' },
   { file: 'Logo-FiberAta.jpg', name: 'FiberATA' },
