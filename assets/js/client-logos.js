@@ -30,6 +30,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-Jnet.jpg', name: 'Jnet' },
   { file: 'Logo-Upline.jpg', name: 'Upline' },
   { file: 'Logo-Fortnet.jpg', name: 'FORTNET ESP' },
+  { file: 'Logo-Vembandalarga.jpg', name: 'VEM BANDA LARGA' },
   { file: 'Logo-Serginet.png', name: 'SERGINET' },
   { file: 'Logo-Realfort.png', name: 'REALFORT' },
   { file: 'Logo-Linknet.jpg', name: 'Linknet' },
