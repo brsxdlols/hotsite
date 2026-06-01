@@ -5,6 +5,8 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-Conectanet.jpg', name: 'Conectanet' },
   { file: 'Logo-Goldfibra.jpg', name: 'Gold Fibra' },
   { file: 'Logo-Pajeu.png', name: 'Pajeu' },
+  { file: 'Logo_Viaweb.jpg', name: 'Via WEB' },
+  { file: 'Logo-MTTELECOM.jpg', name: 'MT TELECOM' },
   { file: 'Logo-Dedicadafibra.png', name: 'Dedicada Fibra' },
   { file: 'Logo-Aricanduva.png', name: 'Aricanduva NET' },
   { file: 'Logo-ABM.jpg', name: 'ABM TELECOM' },
