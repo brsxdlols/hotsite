@@ -25,7 +25,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-Jonnet.png', name: 'Jonnet' },
   { file: 'Logo-JCTELECOM.png', name: 'JC TELECOM' },
   { file: 'Logo-Infoseg.jpg', name: 'Infoseg' },
-  { file: 'Logo-Ligwary.jpg', name: 'Lig Wary' },
+  { file: 'Logo-Ligwary.jpg', name: 'Lig War' },
   { file: 'Logo-Speedify.jpg', name: 'Speedify' },
   { file: 'Logo-HBSAT.jpg', name: 'HBSAT' },
   { file: 'Logo-THNET.png', name: 'THNET' },
