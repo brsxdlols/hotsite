@@ -144,12 +144,42 @@
             </div>
           </article>
           <article class="service-card">
-            <h3>Nível 7 — Até 2500 clientes</h3>
+            <h3>Nível 7 — Até 1500 clientes</h3>
+            <p>4vCPU • 12GB RAM • 100HD SSD • 10GB UPLINK • 1 IP fixo • Licença grátis • Addons grátis</p>
+            <p class="product-note">Plano intermediário para escala sólida</p>
+            <p class="product-price">R$239,90</p>
+            <div class="price-row">
+              <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%207%20R%24239%2C90" class="btn btn-primary">Contratar</a>
+              <img src="assets/img/mkauth-icon.png" alt="MK-AUTH" class="mk-icon-card">
+            </div>
+          </article>
+          <article class="service-card">
+            <h3>Nível 8 — Até 2500 clientes</h3>
             <p>4vCPU • 16GB RAM • 100HD SAS • 10GB UPLINK • 1 IP fixo • Licença grátis • Addons grátis</p>
             <p class="product-note">Máximo desempenho para scale-up</p>
             <p class="product-price">R$299,90</p>
             <div class="price-row">
-              <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%207%20R%24299%2C90" class="btn btn-primary">Contratar</a>
+              <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%208%20R%24299%2C90" class="btn btn-primary">Contratar</a>
+              <img src="assets/img/mkauth-icon.png" alt="MK-AUTH" class="mk-icon-card">
+            </div>
+          </article>
+          <article class="service-card">
+            <h3>Nível 9 — Até 6000 clientes</h3>
+            <p>6vCPU • 24GB RAM • 200HD SAS • 10GB UPLINK • 1 IP fixo • Licença grátis • Addons grátis</p>
+            <p class="product-note">Infraestrutura para grandes operações</p>
+            <p class="product-price">R$499,90</p>
+            <div class="price-row">
+              <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%209%20R%24499%2C90" class="btn btn-primary">Contratar</a>
+              <img src="assets/img/mkauth-icon.png" alt="MK-AUTH" class="mk-icon-card">
+            </div>
+          </article>
+          <article class="service-card">
+            <h3>Nível 10 — Até 10000 clientes</h3>
+            <p>8vCPU • 32GB RAM • 300HD SAS • 10GB UPLINK • 1 IP fixo • Licença grátis • Addons grátis</p>
+            <p class="product-note">Estrutura premium para alta demanda</p>
+            <p class="product-price">R$799,90</p>
+            <div class="price-row">
+              <a href="https://wa.me/5516988778656?text=Quero%20contratar%20N%C3%ADvel%2010%20R%24799%2C90" class="btn btn-primary">Contratar</a>
               <img src="assets/img/mkauth-icon.png" alt="MK-AUTH" class="mk-icon-card">
             </div>
           </article>
@@ -251,26 +281,59 @@ document.addEventListener('DOMContentLoaded', () => {
     // A dashboard.png deve ser a primeira (índice 0)
     const images = [
       'assets/img/dashboard.png',
-      'assets/img/mkauth.png',
-      'assets/img/mkauth-icon.png'
+      'assets/img/Apresentacao2.jpeg',
+      'assets/img/Apresentacao3.jpeg',
+      'assets/img/Apresentacao4.jpeg',
+      'assets/img/Apresentacao5.jpeg',
+      'assets/img/Apresentacao6.jpeg',
+      'assets/img/Apresentacao7.jpeg'
     ];
     let currentIndex = 0;
+    let autoSlideTimer = null;
+
+    const dashboardPreview = document.querySelector('.dashboard-preview');
 
     const updateModalImage = (index) => {
       currentIndex = index;
       modalImg.src = images[currentIndex];
+      if (dashboardPreview) {
+        dashboardPreview.src = images[currentIndex];
+      }
+      // Atualizar background blur do container usando CSS variable
+      if (dashboardContainer) {
+        dashboardContainer.style.setProperty('--bg-image', `url('${images[currentIndex]}')`);
+      }
+      // Atualizar background blur do modal
+      if (modal) {
+        modal.style.setProperty('--modal-bg-image', `url('${images[currentIndex]}')`);
+      }
+    };
+
+    const startAutoSlide = () => {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = setInterval(() => {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateModalImage(currentIndex);
+      }, 3000);
+    };
+
+    const stopAutoSlide = () => {
+      clearInterval(autoSlideTimer);
+      autoSlideTimer = null;
     };
 
     // ABRIR: Ao clicar no container, ele sempre abre a dashboard (índice 0)
     if (dashboardContainer && modal) {
         dashboardContainer.addEventListener('click', () => {
             modal.style.display = 'block';
-            updateModalImage(0); // Força abrir a dashboard.png primeiro
+            modal.style.setProperty('--modal-bg-image', `url('${images[currentIndex]}')`);
+            updateModalImage(currentIndex);
             document.body.style.overflow = 'hidden';
         });
 
         const closeModal = () => {
             modal.style.display = 'none';
+            stopAutoSlide();
             document.body.style.overflow = 'auto';
         };
 
@@ -308,6 +371,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // INICIAR AUTOPLAY NA PÁGINA PRINCIPAL
+    startAutoSlide();
 });
 
 
