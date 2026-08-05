@@ -1,5 +1,8 @@
 window.CLIENT_LOGOS = [
-  { file: 'Logo-Ontech.png', name: 'Ontech' },
+  { file: 'Logo-Fibratelecom.jpg', name: 'FIBRA TELECOM' },
+  { file: 'Logo-T21Provedor.jpg', name: 'T21 Provedor' },
+  { file: 'Logo-Plusnet.jpg', name: 'Plus Net' },
+  { file: 'Logo-Nettelecom.jpg', name: 'Net Telecom' },  
   { file: 'Logo-Paulotelecom.png', name: 'Paulo Telecom' },
   { file: 'Logo-NETON.png', name: 'NETON' },
   { file: 'Logo-Conectanet.jpg', name: 'Conectanet' },
