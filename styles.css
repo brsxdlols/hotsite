@@ -50,7 +50,7 @@ a {
 }
 
 .container {
-  width: min(1140px, 92vw);
+  width: min(1480px, 95vw);
   margin: 0 auto;
 }
 
@@ -98,9 +98,10 @@ a {
 .nav-content {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Empurra a marca para um lado e o menu para o outro */
+  justify-content: space-between;
   gap: 1rem;
   min-height: 76px;
+  width: min(1500px, 97vw);
 }
 
 .brand {
@@ -109,6 +110,9 @@ a {
   gap: 0.6rem;
   font-weight: 800;
   font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-size: clamp(0.93rem, 1.15vw, 1.5rem);
 }
 
 .brand-mark {
@@ -122,23 +126,42 @@ a {
 .nav-links {
   display: flex;
   align-items: center;
-  /* Gap responsivo: diminui conforme a tela encolhe */
-  gap: clamp(0.5rem, 1.1vw, 1.2rem);
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: clamp(0.32rem, 0.7vw, 0.9rem);
+  min-width: 0;
+  flex: 1;
 }
 
 .nav-links a {
   color: var(--neutral-500);
   font-weight: 600;
-  font-size: clamp(0.85rem, 1vw, 1rem); /* Fonte dos links também diminui */
-  transition: color 180ms ease;
+  font-size: clamp(0.79rem, 0.95vw, 1rem);
+  padding: 0.68rem 0.8rem;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 180ms ease;
 }
 
 .nav-links a:hover {
   color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .nav-links a.is-current {
   color: var(--text-primary);
+  background: linear-gradient(180deg, rgba(116, 171, 224, 0.18), rgba(101, 156, 208, 0.12));
+  border-color: rgba(125, 180, 255, 0.55);
+  box-shadow: inset 0 0 0 1px rgba(160, 210, 255, 0.18), 0 10px 20px rgba(12, 31, 52, 0.24);
+  transform: translateY(-1px);
+}
+
+.nav-links a.is-current:hover {
+  color: var(--text-primary);
+  background: linear-gradient(180deg, rgba(116, 171, 224, 0.22), rgba(101, 156, 208, 0.16));
 }
 
 .btn {
@@ -294,9 +317,9 @@ a {
 /* Localize este bloco e altere a linha align-items */
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 2rem;
-  align-items: stretch; /* Mude de center para stretch */
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: stretch;
 }
 
 
@@ -940,6 +963,68 @@ a {
     color: inherit !important;
 }
 
+.footer-cta-wrap {
+  margin-top: 1.5rem;
+}
+
+.footer-contact-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: linear-gradient(90deg, rgba(17, 85, 147, 0.82), rgba(13, 59, 99, 0.94));
+  border: 1px solid rgba(159, 208, 255, 0.25);
+  border-radius: 18px;
+  padding: 1rem 1.4rem;
+  box-shadow: 0 12px 24px rgba(8, 18, 32, 0.2);
+}
+
+.footer-contact-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #19c66e, #16a861);
+  color: #fff;
+  font-size: 2rem;
+  box-shadow: 0 0 20px rgba(24, 195, 108, 0.22);
+}
+
+.footer-contact-text {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #edf7ff;
+}
+
+.footer-contact-text span {
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.footer-contact-text strong {
+  font-size: clamp(1.7rem, 2.4vw, 2.8rem);
+  letter-spacing: -0.04em;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+@media (max-width: 760px) {
+  .footer-contact-bar,
+  .footer-contact-text {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-contact-text {
+    gap: 0.2rem;
+  }
+}
+
 .footer-credit a {
   color: inherit;
 }
@@ -1141,36 +1226,752 @@ a {
 }
 
 .blink-btn {
-  /* ... mantenha suas outras configurações de cor e arredondamento ... */
   background: var(--accent);
   color: #ffffff !important;
-  padding: 10px 24px;
+  padding: 10px 22px;
   border-radius: 50px;
   font-weight: bold;
   text-decoration: none;
   display: inline-flex;
-  
-  /* Aplica a animação branca */
+  white-space: nowrap;
   animation: whitePulse 2.5s infinite;
+}
+
+@media (max-width: 1280px) {
+  .nav-content {
+    gap: 0.75rem;
+  }
+
+  .brand {
+    font-size: clamp(0.8rem, 1vw, 1.1rem);
+  }
+
+  .nav-links a {
+    padding: 0.6rem 0.7rem;
+    font-size: clamp(0.72rem, 0.82vw, 0.9rem);
+  }
+
+  .btn-primary.nav-cta {
+    padding-inline: 1rem;
+    font-size: 0.8rem;
+  }
 }
 
 @keyframes whitePulse {
   0% {
-    /* Começa com um brilho branco bem próximo e um pouco visível */
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);
   }
   70% {
-    /* O brilho expande e some totalmente */
     box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
   }
 }
-/* 1. Este controla o tamanho do espaço de cada logo e o distanciamento */
+
+.scm-body {
+  background: linear-gradient(180deg, #061d31 0%, #021521 100%);
+  color: #f3f8ff;
+}
+
+.scm-body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 12% 16%, rgba(255,255,255,0.12), transparent 25%),
+    radial-gradient(circle at 78% 18%, rgba(30, 120, 220, 0.22), transparent 28%),
+    linear-gradient(135deg, rgba(6, 18, 31, 0.7), rgba(6, 19, 34, 0.9));
+  pointer-events: none;
+  z-index: -1;
+}
+
+.scm-topbar {
+  background: rgba(8, 24, 39, 0.82);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.scm-main {
+  padding-bottom: 3rem;
+}
+
+.scm-hero {
+  padding-top: 3.5rem;
+  padding-bottom: 1.5rem;
+  background: transparent;
+}
+
+.scm-hero-shell {
+  position: relative;
+}
+
+.scm-brandbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+
+.scm-brandmark {
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 18px rgba(255,255,255,0.16));
+}
+
+.scm-brandmark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.scm-brand-text {
+  text-align: left;
+  color: #f4f8ff;
+}
+
+.scm-brand-text h2 {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: clamp(2rem, 2vw, 2.8rem);
+  letter-spacing: 0.07em;
+  font-weight: 700;
+}
+
+.scm-brand-text p {
+  margin: 0.1rem 0 0;
+  font-size: 1rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+}
+
+.scm-hero-content {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  align-items: center;
+  gap: 2rem;
+  min-height: 500px;
+}
+
+.scm-title-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scm-title-wrap h1 {
+  margin: 0;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: clamp(3.1rem, 5vw, 7.3rem);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  color: #f3f8ff;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.scm-title-wrap h1 span {
+  display: block;
+  line-height: 0.92;
+}
+
+.scm-title-wrap h1 .line-one,
+.scm-title-wrap h1 .line-two,
+.scm-title-wrap h1 .line-three,
+.scm-title-wrap h1 .line-four {
+  color: #f4f8ff;
+}
+
+.scm-title-wrap h1 .line-three {
+  color: #4bb5ff;
+}
+
+.urgent-banner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: fit-content;
+  margin-top: 1.3rem;
+  background: linear-gradient(90deg, #ff3d3d 0%, #d3111d 100%);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 12px 30px rgba(224, 35, 35, 0.4);
+  font-weight: 800;
+  font-size: clamp(1.2rem, 2vw, 2.2rem);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.warning-sign {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 900;
+  padding-top: 2px;
+}
+
+.scm-photo-panel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.scm-photo-panel img {
+  width: min(100%, 500px);
+  max-height: 650px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 24px;
+  box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45);
+  background: rgba(255,255,255,0.06);
+}
+
+.scm-info {
+  padding-top: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.scm-info-box {
+  background: #f1f1f1;
+  border-radius: 28px;
+  padding: 1.4rem 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(260px, 0.9fr) 1.4fr;
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid rgba(18, 61, 103, 0.2);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
+}
+
+.scm-anatel-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 220px;
+  border-right: 2px solid rgba(13, 90, 156, 0.35);
+  padding-right: 1rem;
+}
+
+.scm-anatel-icon {
+  position: relative;
+  width: 180px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.anatel-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #1b74f2 0%, #0d4cac 30%, #0f2f70 100%);
+  box-shadow: inset 0 0 0 14px rgba(255,255,255,0.14);
+}
+
+.anatel-slice {
+  position: absolute;
+  width: 170px;
+  height: 72px;
+  border-radius: 120px 120px 0 0;
+  background: #f1c72d;
+  transform: rotate(-8deg);
+  bottom: 22px;
+}
+
+.scm-anatel-wording {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  text-align: center;
+  color: #1b2d4a;
+}
+
+.scm-anatel-wording strong {
+  font-size: clamp(2.2rem, 3vw, 3.7rem);
+  letter-spacing: -0.06em;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  color: #0b7d3a;
+  font-weight: 800;
+}
+
+.scm-anatel-wording span {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.scm-info-copy {
+  text-align: left;
+  color: #123454;
+  padding-left: 1rem;
+}
+
+.scm-info-copy p {
+  margin: 0;
+  font-weight: 800;
+  font-size: clamp(1.3rem, 2vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #0e3b68;
+}
+
+.scm-info-copy h3 {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1.8rem, 2.5vw, 3rem);
+  line-height: 1.02;
+  color: #1d6ec8;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.scm-highlight {
+  color: #0f5baa !important;
+  background: linear-gradient(90deg, #1e7be8 0%, #1aa0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+
+.scm-solution-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  background: linear-gradient(90deg, rgba(24, 86, 171, 0.95), rgba(13, 51, 99, 0.96));
+  border: 2px solid rgba(141, 195, 255, 0.5);
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(6, 17, 30, 0.26);
+  padding: 1.2rem 1.4rem;
+}
+
+.scm-shield {
+  width: 104px;
+  height: 104px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.09);
+  border: 2px solid rgba(255,255,255,0.7);
+  color: #dfeeff;
+  flex-shrink: 0;
+}
+
+.scm-shield i {
+  font-size: 3.2rem;
+}
+
+.scm-solution-copy p {
+  margin: 0;
+  color: #edf5ff;
+  font-size: clamp(1.1rem, 1.5vw, 1.7rem);
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.scm-feature-topline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid rgba(96, 171, 255, 0.8);
+}
+
+.scm-feature-topline span {
+  font-size: clamp(1.7rem, 2.5vw, 3rem);
+  letter-spacing: -0.04em;
+  color: #eef8ff;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.scm-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.scm-feature-item {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0.5rem;
+}
+
+.feature-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  font-size: 2.8rem;
+  color: #edf6ff;
+  background: rgba(255,255,255,0.04);
+  border: 2px solid rgba(255,255,255,0.55);
+  box-shadow: inset 0 0 0 8px rgba(255,255,255,0.06);
+}
+
+.scm-feature-item h4 {
+  margin: 0;
+  font-size: clamp(1rem, 1.4vw, 1.45rem);
+  color: #f3f8ff;
+  line-height: 1.3;
+  max-width: 18ch;
+  font-weight: 800;
+}
+
+.scm-callout-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+  background: linear-gradient(90deg, rgba(12, 59, 101, 0.9), rgba(9, 41, 73, 0.98));
+  border-radius: 18px;
+  border: 1px solid rgba(168, 216, 255, 0.3);
+  padding: 1.4rem 1.2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.scm-callout-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(7, 23, 41, 0.3);
+}
+
+.scm-call-icon {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #18c36c, #19a55f);
+  color: #fff;
+  font-size: 2.3rem;
+  box-shadow: 0 0 25px rgba(24, 195, 108, 0.25);
+}
+
+.scm-call-text {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  color: #eef7ff;
+}
+
+.scm-call-text span {
+  font-size: clamp(1.2rem, 2vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.scm-call-text strong {
+  font-size: clamp(2rem, 4vw, 4rem);
+  letter-spacing: -0.04em;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+.scm-signature {
+  text-align: center;
+  margin-top: 1.2rem;
+  color: rgba(239, 245, 255, 0.8);
+}
+
+.scm-signature p {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.scm-signature small {
+  display: block;
+  margin-top: 0.3rem;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: rgba(206, 221, 255, 0.76);
+}
+
+@media (max-width: 960px) {
+  .scm-hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .scm-photo-panel {
+    order: -1;
+  }
+
+  .scm-info-box {
+    grid-template-columns: 1fr;
+  }
+
+  .scm-anatel-box {
+    border-right: none;
+    border-bottom: 2px solid rgba(13, 90, 156, 0.35);
+    padding-right: 0;
+    padding-bottom: 1rem;
+  }
+
+  .scm-feature-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .scm-brandbar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .scm-brand-text {
+    text-align: center;
+  }
+
+  .scm-brand-text p {
+    letter-spacing: 0.18em;
+  }
+
+  .urgent-banner {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .scm-info-box {
+    padding: 1rem;
+  }
+
+  .scm-anatel-box {
+    flex-direction: column;
+  }
+
+  .scm-solution-box,
+  .scm-callout-box,
+  .scm-call-text {
+    flex-direction: column;
+  }
+
+  .scm-call-text {
+    gap: 0.25rem;
+  }
+
+  .scm-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.guide-intro {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guide-intro h1 {
+  margin: 0.6rem 0 1rem;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: clamp(2.2rem, 4vw, 4rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.guide-intro p {
+  margin: 0 auto;
+  max-width: 850px;
+  color: rgba(232, 239, 250, 0.82);
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.3rem;
+}
+
+.guide-card,
+.guide-panel,
+.guide-cta {
+  background: linear-gradient(180deg, rgba(20, 46, 74, 0.76), rgba(12, 27, 42, 0.9));
+  border: 1px solid rgba(138, 184, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 18px 50px rgba(2, 12, 21, 0.36);
+}
+
+.guide-card {
+  padding: 1.6rem 1.4rem;
+}
+
+.guide-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.4rem;
+  color: #f2f8ff;
+}
+
+.guide-card p {
+  margin: 0;
+  color: rgba(228, 234, 244, 0.82);
+  line-height: 1.7;
+}
+
+.guide-panel {
+  padding: 1.8rem 1.5rem;
+}
+
+.guide-panel-head h2 {
+  margin: 0.3rem 0 1rem;
+  font-size: clamp(1.6rem, 2.4vw, 2.6rem);
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+.guide-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: rgba(227, 235, 246, 0.84);
+  line-height: 1.9;
+}
+
+.guide-steps li + li {
+  margin-top: 0.5rem;
+}
+
+.guide-panel.alt {
+  background: linear-gradient(180deg, rgba(19, 63, 97, 0.76), rgba(10, 26, 43, 0.92));
+}
+
+.benefits-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.benefits-list div {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 1rem;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  color: #f0f7ff;
+}
+
+.benefits-list i {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(31, 196, 117, 0.2);
+  color: #56f7a8;
+  flex-shrink: 0;
+}
+
+.guide-cta {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.guide-cta h2 {
+  margin: 0 0 1.2rem;
+  font-family: "Space Grotesk", "Segoe UI", sans-serif;
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.2;
+}
+
+@media (max-width: 960px) {
+  .guide-grid,
+  .benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .guide-intro p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .scm-hero-content {
+    grid-template-columns: 1fr;
+  }
+
+  .scm-anatel-card {
+    margin: 0 auto;
+  }
+
+  .scm-solution-box {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .scm-shield {
+    margin: 0 auto;
+  }
+
+  .scm-cta-pill {
+    margin: 0 auto;
+    width: min(100%, 320px);
+  }
+
+  .scm-feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .scm-brandbar {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .scm-brand-text {
+    text-align: center;
+  }
+
+  .scm-brand-text p {
+    letter-spacing: 0.18em;
+  }
+
+  .scm-subheadline::before,
+  .scm-subheadline::after {
+    display: none;
+  }
+
+  .scm-callout-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .scm-call-text {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+}
+
 .logo-slide {
-  width: 250px;       /* Aumente este valor para a logo ter mais espaço na largura */
-  padding: 0 40px;    /* Aumente o respiro entre uma logo e outra */
+  width: 250px;
+  padding: 0 40px;
   flex-shrink: 0;
   display: flex;
   align-items: center;

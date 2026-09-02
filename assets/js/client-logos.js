@@ -1,6 +1,11 @@
 window.CLIENT_LOGOS = [
   { file: 'Logo-Fibratelecom.jpg', name: 'FIBRA TELECOM' },
-  { file: 'Logo-T21Provedor.jpg', name: 'T21 Provedor' },
+  { file: 'Logo-Redemaisinternet.jpg', name: 'REDE MAIS' },
+  { file: 'Logo-Goldfibra.jpeg', name: 'GOLD FIBRA' },  
+  { file: 'Logo-Anexxo-telecom.jpg', name: 'ANEXXO TELECOM' },  
+  { file: 'Logo-Centraldaagua.jpg', name: 'CENTRAL DA AGUA' },  
+  { file: 'Logo-Linhanettelecom.jpg', name: 'LINHANET TELECOM' },
+  { file: 'Logo-Anexxo.jpg', name: 'ANEXXO' },
   { file: 'Logo-Plusnet.jpg', name: 'Plus Net' },
   { file: 'Logo-Nettelecom.jpg', name: 'Net Telecom' },  
   { file: 'Logo-Paulotelecom.png', name: 'Paulo Telecom' },
