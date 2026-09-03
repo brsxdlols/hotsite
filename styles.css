@@ -1228,12 +1228,16 @@ a {
 .blink-btn {
   background: var(--accent);
   color: #ffffff !important;
-  padding: 10px 22px;
+  padding: 0.6rem 1rem;
   border-radius: 50px;
-  font-weight: bold;
+  font-weight: 800;
+  font-size: 0.82rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
   text-decoration: none;
   display: inline-flex;
   white-space: nowrap;
+  flex-shrink: 0;
   animation: whitePulse 2.5s infinite;
 }
 
