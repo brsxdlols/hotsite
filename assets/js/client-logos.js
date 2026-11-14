@@ -141,7 +141,10 @@ window.CLIENT_LOGOS = [
   { file: 'Logo-Conexlink.jpg', name: 'Conexlink' },
   { file: 'Logo-Domnet.jpg', name: 'Domnet' },
   { file: 'Logo-Quality.png', name: 'Quality' },
-  { file: 'Logo-FCSNET.png', name: 'FCSNET' }
+  { file: 'Logo-FCSNET.png', name: 'FCSNET' },
+  { file: 'Conecta-logo.jpg', name: 'CONECTA FIBRA ÓPTICA' },
+  { file: 'Logo-Evolution.net-Conectando-ao-Futuro.jpg', name: 'EVOLUTION.NET' },
+  { file: 'Logo-Fernandonet.jpg', name: 'FERNANDO NET' }
 ];
 
 window.getClientLogoPath = function getClientLogoPath(fileName) {
