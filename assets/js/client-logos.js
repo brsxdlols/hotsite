@@ -32,7 +32,7 @@ window.CLIENT_LOGOS = [
   { file: 'Logo_Redeconnect.png', name: 'REDE CONNECT' },
   { file: 'Logo-Conectnet.jpg', name: 'CONNECT NET' },
   { file: 'Logo-JMTELECOM.jpg', name: 'JM TELECOM' },
-  { file: 'Logo-Logo-Ideianet.jpg', name: 'Ideia Net' },
+  { file: 'Logo-Ideianet.jpg', name: 'Ideia Net' },
   { file: 'Logo-HKConnect.jpg', name: 'HK Connect' },
   { file: 'Logo-Internetsim.png', name: 'SIM MAIS' },
   { file: 'Logo-Brennet.jpg', name: 'BRENNET' },
