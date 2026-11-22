@@ -1,14 +1,16 @@
-# Recuperação do hotsite no MK-Auth 25.04
+# Recuperação do hotsite após downgrade
 
-Use este patch no MK-Auth 25.04 (marcador `2504X`), com PHP 7, quando o hotsite retorna `Arquivo layout//index.html nao existe...` e a tabela `sis_hotsite` está vazia.
+O erro `Arquivo layout//index.html nao existe...` apareceu na 25.08 e persistiu na 25.04. Este patch atende instalações 25.08 ou anteriores com PHP 7 ou 8 quando existe a tabela `sis_hotsite` com a coluna `layout`, a tabela está vazia e há um template instalado. A recuperação com gravação foi validada na 25.04. Em outras versões, confira o diagnóstico antes da aplicação.
 
-Recupere o nome do tema no backup da própria instalação. Substitua `TEMA` pelo nome da pasta que contém o `index.html` em `/var/www/layout/`. Execute no servidor com o PHP da instalação:
+Na instalação afetada, confirme o erro na home e execute:
 
 ```sh
-php reparar-hotsite-2504.php TEMA --check
-php reparar-hotsite-2504.php TEMA --apply
+php reparar-hotsite-2504.php --auto --check
+php reparar-hotsite-2504.php --auto --apply
 ```
 
-O primeiro comando só diagnostica. O segundo, executado como root, salva o estado anterior em `/root/mkauth-hotsite-repair/` e insere a linha apenas se a tabela estiver vazia. Uma segunda aplicação com o mesmo tema mantém a linha existente. Os campos além de `layout` recebem os padrões da tabela. Se você tem backup da linha completa, prefira restaurá-la para preservar o conteúdo do hotsite.
+`--auto` lê o tema gravado em `sis_opcao.layhotsite`. Se a opção estiver ausente, ambígua ou apontar para um template inválido, informe explicitamente o nome do tema do backup no lugar de `--auto`. O segundo comando, executado como root, cria um backup privado em `/root/mkauth-hotsite-repair/` antes de inserir. Uma segunda execução com o mesmo tema mantém a linha existente. Para preservar campos adicionais, use a linha completa do backup quando disponível.
 
-O patch é manual e não faz parte do atualizador. Um novo downgrade pode recriar o problema. Faça backup da configuração e dos arquivos antes do ciclo de atualização. Se arquivos personalizados desaparecerem, restaure-os do backup da mesma instalação. Valide o HTML, os recursos estáticos, a lista de planos e a abertura do cadastro por HTTPS. Um HTTP 200 também pode conter a mensagem de erro.
+O script é manual. Para execução automática, o atualizador precisa chamá-lo no servidor após detectar o erro no hotsite e validar a resposta novamente após a recuperação. Faça backup antes do ciclo de downgrade. Arquivos personalizados que desapareceram devem ser recuperados do backup da própria instalação. Valide o HTML, CSS, JavaScript e as rotas usadas pelo tema. Confira o conteúdo, pois o erro pode vir com HTTP 200.
+
+Consulte a [validação por versão](validacao-downgrade.md).
