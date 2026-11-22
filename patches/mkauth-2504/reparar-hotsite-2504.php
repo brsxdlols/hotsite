@@ -1,5 +1,5 @@
 <?php
-// MK-Auth 25.04 PHP 7 — recupera o seletor do hotsite quando a tabela está vazia.
+// MK-Auth 25.08 e anteriores — verifique a compatibilidade da instalação. — recupera o seletor do hotsite quando a tabela está vazia.
 if (PHP_SAPI !== 'cli') {
     exit;
 }
@@ -8,16 +8,13 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 try {
     $theme = $argv[1] ?? '';
     $mode = $argv[2] ?? '--check';
-    if ($argc > 3 || !preg_match('/\A[a-zA-Z0-9][a-zA-Z0-9_-]{0,119}\z/', $theme)
-        || !in_array($mode, ['--check', '--apply'], true)) {
-        throw new RuntimeException('Uso: php reparar-hotsite-2504.php TEMA [--check|--apply]');
+    if ($argc > 3 || $theme === '' || !in_array($mode, ['--check', '--apply'], true)) {
+        throw new RuntimeException('Uso: php reparar-hotsite-2504.php TEMA|--auto [--check|--apply]');
     }
-    if (PHP_MAJOR_VERSION !== 7 || trim(file_get_contents('/opt/mk-auth/etc/update.diz')) !== '2504X') {
-        throw new RuntimeException('Este patch exige MK-Auth 25.04 (2504X) e PHP 7.');
-    }
-    $template = "/var/www/layout/$theme/index.html";
-    if (!is_file($template) || !is_readable($template) || filesize($template) === 0) {
-        throw new RuntimeException("Template ausente ou vazio: $template");
+    $version = trim(file_get_contents('/opt/mk-auth/etc/update.diz'));
+    if (!preg_match('/\A([0-9]{4})[A-Z]\z/', $version, $match)
+        || (int)$match[1] > 2508 || !in_array(PHP_MAJOR_VERSION, [7, 8], true)) {
+        throw new RuntimeException('Este patch exige MK-Auth 25.08 ou anterior com PHP 7 ou 8.');
     }
     require '/opt/mk-auth/include/conexao.php';
     $db = new mysqli(CONHOSTNAME, CONUSERNAME, CONPASSWRD, CONDATABASE);
@@ -25,18 +22,31 @@ try {
         $db->query('LOCK TABLES sis_hotsite WRITE, sis_opcao READ');
     }
     try {
+        $option = $db->query("SELECT valor FROM sis_opcao WHERE nome='layhotsite'")->fetch_all(MYSQLI_ASSOC);
+        if ($theme === '--auto') {
+            if (count($option) !== 1 || !isset($option[0]['valor'])) {
+                throw new RuntimeException('layhotsite não contém um tema único. Informe o tema do backup.');
+            }
+            $theme = $option[0]['valor'];
+        }
+        if (!preg_match('/\A[a-zA-Z0-9][a-zA-Z0-9_-]{0,119}\z/', $theme)) {
+            throw new RuntimeException('Nome de tema inválido.');
+        }
+        $template = "/var/www/layout/$theme/index.html";
+        if (!is_file($template) || !is_readable($template) || filesize($template) === 0) {
+            throw new RuntimeException("Template ausente ou vazio: $template");
+        }
         $rows = $db->query('SELECT layout FROM sis_hotsite LIMIT 2')->fetch_all(MYSQLI_ASSOC);
         if ($rows === [['layout' => $theme]]) {
             echo "Tema $theme já configurado. Nenhuma alteração.\n";
-            exit(0);
+            return;
         }
         if ($rows) {
             throw new RuntimeException('sis_hotsite contém dados. Revise o caso antes de alterar.');
         }
-        $option = $db->query("SELECT valor FROM sis_opcao WHERE nome='layhotsite'")->fetch_all(MYSQLI_ASSOC);
         echo "sis_hotsite vazia. Tema proposto: $theme. layhotsite atual: ", json_encode($option), "\n";
         if ($mode === '--check') {
-            exit(0);
+            return;
         }
         $directory = '/root/mkauth-hotsite-repair';
         if ((!is_dir($directory) && !mkdir($directory, 0700)) || is_link($directory)
