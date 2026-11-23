@@ -115,6 +115,14 @@ a {
   font-size: clamp(0.93rem, 1.15vw, 1.5rem);
 }
 
+.brand-logo {
+  display: block;
+  width: 245px;
+  height: 54px;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .brand-mark {
   width: 12px;
   height: 12px;
@@ -1256,17 +1264,18 @@ a {
 }
 
 .scm-brandmark {
-  width: 90px;
-  height: 90px;
+  width: 360px;
+  height: 188px;
   display: flex;
   align-items: center;
   justify-content: center;
-  filter: drop-shadow(0 0 18px rgba(255,255,255,0.16));
+  filter: none;
 }
 
-.scm-brandmark svg {
+.scm-brandmark img {
   width: 100%;
   height: 100%;
+  object-fit: contain;
 }
 
 .scm-brand-text {
@@ -1346,6 +1355,42 @@ a {
   font-size: clamp(1.2rem, 2vw, 2.2rem);
   letter-spacing: 0.02em;
   text-transform: uppercase;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  animation: urgent-banner-pulse 2.4s ease-in-out infinite;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.urgent-banner:hover,
+.urgent-banner:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(255, 61, 61, 0.55);
+}
+
+.urgent-banner:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 4px;
+}
+
+@keyframes urgent-banner-pulse {
+  0%, 100% {
+    box-shadow: 0 12px 30px rgba(224, 35, 35, 0.4);
+  }
+  50% {
+    box-shadow: 0 14px 36px rgba(255, 61, 61, 0.62);
+  }
+}
+
+#scm-anatel-info,
+#responsabilidade-tecnica {
+  scroll-margin-top: 100px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .urgent-banner {
+    animation: none;
+  }
 }
 
 .warning-sign {
@@ -1402,7 +1447,30 @@ a {
   gap: 1rem;
   min-height: 220px;
   border-right: 2px solid rgba(13, 90, 156, 0.35);
-  padding-right: 1rem;
+  margin: 1.2rem 1rem 1.2rem 1.2rem;
+  padding: 1.2rem;
+  border-radius: 18px;
+  background: #123b67;
+}
+
+.cft-official-logo {
+  display: block;
+  width: min(300px, 88%);
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.scm-anatel-box {
+  background: #fff;
+  border: 1px solid rgba(13, 90, 156, 0.12);
+  box-shadow: 0 8px 22px rgba(13, 90, 156, 0.08);
+}
+
+.anatel-official-logo {
+  display: block;
+  width: min(320px, 88%);
+  max-height: 180px;
+  object-fit: contain;
 }
 
 .scm-anatel-icon {
