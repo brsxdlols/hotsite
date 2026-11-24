@@ -21,7 +21,7 @@
 <body>
   <header class="topbar">
     <div class="container nav-content">
-      <a href="#inicio" class="brand">
+      <a href="#" class="brand">
         <img class="brand-logo" src="assets/images/bruno-fontes-logo-correta.png?v=4" alt="Bruno Fontes Network Consulting">
       </a>
       <nav class="nav-links" aria-label="Navegação principal">
@@ -66,8 +66,8 @@
             <a href="mk-auth.html" class="btn btn-primary">Contratar MK-Auth Cloud</a>
           </div>
           <ul class="kpi-grid" aria-label="Indicadores profissionais">
-            <li><strong>+9 anos</strong><span>em redes de ISP</span></li>
-            <li><strong>+15 anos</strong><span>Trabalhando com tecnologia e informática</span></li>
+            <li><strong data-experience-start="2017-01-01">+9 anos</strong><span>em redes de ISP</span></li>
+            <li><strong data-experience-start="2011-01-01">+15 anos</strong><span>Trabalhando com tecnologia e informática</span></li>
             <li><strong>Protocolo TCP/IP</strong><span>Arquitetura de redes</span></li>
             <li><strong>Roteamento Avançado</strong><span>Configuração nível operadora</span></li>
           </ul>
@@ -185,7 +185,7 @@
           <article class="tech-card">
             <h3>ERP e Serviços</h3>
             <ul>
-              <li>MK-Auth com +14 anos de experiência</li>
+              <li>MK-Auth com <span data-experience-start="2012-01-01">+14 anos</span> de experiência</li>
               <li>DNS recursivo e autoritativo</li>
               <li>Gerenciamento de domínios</li>
               <li>RADIUS/AAA e servidores Speedtest</li>
@@ -368,6 +368,38 @@
     if (yearEl) {
       yearEl.textContent = new Date().getFullYear();
     }
+
+    document.querySelectorAll('[data-experience-start]').forEach((counter) => {
+      const dateParts = counter.dataset.experienceStart.split('-').map(Number);
+      const [year, month, day] = dateParts;
+      const startDate = new Date(year, month - 1, day);
+
+      if (
+        dateParts.length !== 3 ||
+        startDate.getFullYear() !== year ||
+        startDate.getMonth() !== month - 1 ||
+        startDate.getDate() !== day
+      ) {
+        console.error('Data inicial inválida para contador de experiência:', counter.dataset.experienceStart);
+        return;
+      }
+
+      const today = new Date();
+      let years = today.getFullYear() - year;
+      if (
+        today.getMonth() < month - 1 ||
+        (today.getMonth() === month - 1 && today.getDate() < day)
+      ) {
+        years -= 1;
+      }
+
+      if (years < 0) {
+        console.error('Data inicial futura para contador de experiência:', counter.dataset.experienceStart);
+        return;
+      }
+
+      counter.textContent = `+${years} anos`;
+    });
 
     // Menu hamburger toggle
     const menuToggle = document.getElementById('menuToggle');
