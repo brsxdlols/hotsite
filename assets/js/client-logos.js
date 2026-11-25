@@ -145,8 +145,12 @@ window.CLIENT_LOGOS = [
   { file: 'Conecta-logo.jpg', name: 'CONECTA FIBRA ÓPTICA' },
   { file: 'Logo-Evolution.net-Conectando-ao-Futuro.jpg', name: 'EVOLUTION.NET' },
   { file: 'Logo-Fernandonet.jpg', name: 'FERNANDO NET' },
-  { file: 'Logo-Marth-Connect.png', name: 'MARTH CONNECT' }
-];
+  { file: 'Logo-Marth-Connect.png', name: 'MARTH CONNECT' },
+  { file: 'Logo-Nova-Netty.jpg', name: 'NOVA NETTY' }
+].sort((first, second) =>
+  first.name.localeCompare(second.name, 'pt-BR', { sensitivity: 'base' }) ||
+  first.file.localeCompare(second.file, 'pt-BR', { sensitivity: 'base' })
+);
 
 window.getClientLogoPath = function getClientLogoPath(fileName) {
   return encodeURI('Logos clientes/' + fileName);
