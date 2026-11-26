@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <link rel="icon" type="image/x-icon" href="assets/images/bruno-fontes.jpg">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Atendimento emergencial 24/7 para provedores com rede parada. Fale diretamente com Bruno Fontes.">
+  <title>SOS Rede Parada 24/7 | Bruno Fontes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="container nav-content">
+      <a href="index.html" class="brand">
+        <img class="brand-logo" src="assets/images/bruno-fontes-logo-correta.png?v=4" alt="Bruno Fontes Network Consulting">
+      </a>
+      <nav class="nav-links" aria-label="Navegação principal">
+        <a href="mk-auth.html#suporte-local" class="sos-nav-link"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> SOS MK-AUTH</a>
+        <a href="sos-rede-parada.html" class="sos-nav-link sos-network-nav-link" aria-current="page"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> SOS REDE PARADA</a>
+        <a href="cft.html">CFT</a>
+        <a href="scm.html">SCM</a>
+        <a href="mk-auth.html">MK-AUTH</a>
+        <a href="index.html#experiencia">Experiência</a>
+        <a href="clientes.html">Clientes</a>
+      </nav>
+      <a href="index.html#contato" class="btn btn-primary nav-cta">Solicitar contato</a>
+      <button class="menu-toggle" aria-label="Abrir menu" id="menuToggle">
+        <i class="fa fa-bars"></i>
+      </button>
+      <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobile">
+        <a href="index.html" class="mobile-menu-link">Home</a>
+        <a href="mk-auth.html#suporte-local" class="mobile-menu-link sos-mobile-link">SOS MK-AUTH</a>
+        <a href="sos-rede-parada.html" class="mobile-menu-link sos-network-mobile-link" aria-current="page">SOS REDE PARADA</a>
+        <a href="cft.html" class="mobile-menu-link">CFT</a>
+        <a href="scm.html" class="mobile-menu-link">SCM</a>
+        <a href="mk-auth.html" class="mobile-menu-link">MK-AUTH</a>
+        <a href="index.html#experiencia" class="mobile-menu-link">Experiência</a>
+        <a href="clientes.html" class="mobile-menu-link">Clientes</a>
+        <a href="index.html#contato" class="btn btn-primary mobile-menu-btn">Solicitar contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="sos-network-page">
+    <div class="container">
+      <header class="sos-network-page-intro">
+        <p class="eyebrow">Plantão emergencial 24/7 para provedores</p>
+        <h1>SOS REDE PARADA</h1>
+        <p>Seus clientes estão sem conexão? Para um atendimento mais rápido, priorize a ligação direta ou o WhatsApp.</p>
+      </header>
+      <section class="sos-network-section" aria-labelledby="sos-title">
+        <div class="sos-network-card">
+          <div class="sos-network-icon" aria-hidden="true">
+            <i class="fa fa-exclamation-triangle"></i>
+          </div>
+          <div class="sos-network-copy">
+            <p class="eyebrow">Contato imediato</p>
+            <h2 id="sos-title">Contato imediato com Bruno Fontes</h2>
+            <p>Disponível 24 horas por dia, 7 dias por semana para emergências na sua rede.</p>
+            <div class="sos-network-phone">
+              <a href="tel:+5516988778656">(16) 98877-8656</a>
+              <span>Consultor e engenheiro de redes</span>
+            </div>
+          </div>
+          <div class="sos-network-actions">
+            <p class="sos-network-priority">Para atendimento mais rápido, escolha:</p>
+            <a href="tel:+5516988778656" class="btn sos-network-call">
+              <i class="fa fa-phone" aria-hidden="true"></i> Ligar agora
+            </a>
+            <a href="https://wa.me/5516988778656?text=Estou%20com%20a%20rede%20parada%20e%20preciso%20de%20suporte%20emergencial"
+              class="btn sos-network-whatsapp" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-whatsapp" aria-hidden="true"></i> Chamar no WhatsApp
+            </a>
+            <a href="https://t.me/Bruno_Fontes" class="btn sos-network-telegram" target="_blank" rel="noopener noreferrer">
+              <i class="fa fa-telegram" aria-hidden="true"></i> Chamar no Telegram
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>Bruno Fontes • Network Consulting • Atendimento emergencial 24/7</p>
+      <p class="footer-credit">Contato imediato: <a href="tel:+5516988778656">(16) 98877-8656</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuToggle?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      mobileMenu?.classList.toggle('active');
+      menuToggle.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+    });
+
+    document.querySelectorAll('.mobile-menu-link, .mobile-menu-btn').forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu?.classList.remove('active');
+        menuToggle?.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      if (mobileMenu?.classList.contains('active') &&
+          !mobileMenu.contains(event.target) &&
+          !menuToggle.contains(event.target)) {
+        mobileMenu.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+      }
+    });
+  </script>
+</body>
+
+</html>
